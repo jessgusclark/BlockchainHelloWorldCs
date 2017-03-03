@@ -6,9 +6,9 @@ using System.Web;
 namespace BlockchainHelloWorldClasses.Block {
     public class BlockBase {
 
-        private int Id;
-        private int Nonce;
-        private BlockBase PreviousBlock;
+        protected int Id;
+        protected int Nonce;
+        protected BlockBase PreviousBlock;
 
         public BlockBase(int i) {
             Id = i;

@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Block\BlockBase.cs" />
+    <Compile Include="Block\BlockData.cs" />
     <Compile Include="Encryption\EncryptionBase.cs" />
     <Compile Include="Encryption\EncryptionBlock.cs" />
     <Compile Include="Encryption\EncryptionObject.cs" />
