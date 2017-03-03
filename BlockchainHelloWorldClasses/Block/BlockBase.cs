@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace BlockchainHelloWorld.Block {
+namespace BlockchainHelloWorldClasses.Block {
     public class BlockBase {
 
         private int Id;

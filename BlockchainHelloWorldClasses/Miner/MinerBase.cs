@@ -1,10 +1,10 @@
-﻿using BlockchainHelloWorld.Block.Encryption;
+﻿using BlockchainHelloWorldClasses.Block.Encryption;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace BlockchainHelloWorld.Block.Miner {
+namespace BlockchainHelloWorldClasses.Block.Miner {
     public class MinerBase {
 
         private BlockBase Blockchain;
