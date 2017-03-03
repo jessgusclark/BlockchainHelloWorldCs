@@ -68,7 +68,10 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Encryption.cs" />
+    <Compile Include="Block.cs" />
+    <Compile Include="Encryption\EncryptionBase.cs" />
+    <Compile Include="Encryption\EncryptionObject.cs" />
+    <Compile Include="Encryption\EncryptionString.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <PropertyGroup>
