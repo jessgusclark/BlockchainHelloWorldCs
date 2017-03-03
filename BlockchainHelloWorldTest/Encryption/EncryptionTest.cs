@@ -2,8 +2,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Security.Cryptography;
 using System.Text;
-using BlockchainHelloWorld;
-using BlockchainHelloWorld.Encryption;
+using BlockchainHelloWorld.Block;
+using BlockchainHelloWorld.Block.Encryption;
 
 namespace BlockchainHelloWorldTest.Encryption {
     [TestClass]

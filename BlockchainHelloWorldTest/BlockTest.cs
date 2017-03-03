@@ -1,17 +1,17 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BlockchainHelloWorld;
-using BlockchainHelloWorld.Encryption;
+using BlockchainHelloWorld.Block;
+using BlockchainHelloWorld.Block.Encryption;
 
 namespace BlockchainHelloWorldTest {
     [TestClass]
     public class BlockTest {
 
-        private Block b1;
+        private BlockBase b1;
 
         [TestInitialize()]
         public void Initialize() {
-            b1 = new Block(1);
+            b1 = new BlockBase(1);
         }
 
         [TestMethod]
@@ -22,9 +22,18 @@ namespace BlockchainHelloWorldTest {
         }
 
         [TestMethod]
+        public void TestBlockToString() {
+
+            String result = b1.ToString();
+
+            Assert.AreEqual("{id:1}", result);
+
+        }
+
+        [TestMethod]
         public void TestPreviousGetId() {
 
-            Block b2 = new Block(2);
+            BlockBase b2 = new BlockBase(2);
 
             b2.SetPreviousBlock(b1);
 
@@ -40,7 +49,7 @@ namespace BlockchainHelloWorldTest {
         [TestMethod]
         [ExpectedException(typeof(System.Exception))]
         public void TestSetPreviosBlockNot() {
-            Block b3 = new Block(3);
+            BlockBase b3 = new BlockBase(3);
 
             b1.SetPreviousBlock(b3);
         }

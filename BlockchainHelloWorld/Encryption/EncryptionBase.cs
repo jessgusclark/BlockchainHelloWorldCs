@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
-namespace BlockchainHelloWorld.Encryption {
+namespace BlockchainHelloWorld.Block.Encryption {
     public class EncryptionBase {
 
         /// <summary>

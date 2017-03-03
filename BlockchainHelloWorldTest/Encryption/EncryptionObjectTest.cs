@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BlockchainHelloWorld.Encryption;
+using BlockchainHelloWorld.Block.Encryption;
 
 namespace BlockchainHelloWorldTest.Encryption {
     [TestClass]

@@ -6,10 +6,10 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Web;
 
-namespace BlockchainHelloWorld.Encryption {
+namespace BlockchainHelloWorld.Block.Encryption {
     public class EncryptionBlock:EncryptionBase {
 
-        public string Encrypt(Block o) {
+        public string Encrypt(BlockBase o) {
 
             byte[] b = ToByte(o);
             byte[] sha = ByteToSha1(b);
@@ -23,8 +23,9 @@ namespace BlockchainHelloWorld.Encryption {
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        private byte[] ToByte(Block obj) {
-            return Encoding.UTF8.GetBytes(obj.ToString()); 
+        private byte[] ToByte(BlockBase obj) {
+            String s = obj.ToString();
+            return Encoding.UTF8.GetBytes(s); 
         }
 
     }

@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace BlockchainHelloWorld {
-    public class Block {
+namespace BlockchainHelloWorld.Block {
+    public class BlockBase {
 
         private int Id;
-        private Block PreviousBlock;
-        private int p;
+        private BlockBase PreviousBlock;
 
-        public Block(int i) {
+        public BlockBase(int i) {
             Id = i;
         }
 
@@ -18,7 +17,7 @@ namespace BlockchainHelloWorld {
         /// <summary>
         /// Setters
         /// </summary>
-        public void SetPreviousBlock(Block b) {
+        public void SetPreviousBlock(BlockBase b) {
             if ((b.GetId() + 1) != Id)
                 throw new Exception("Id must be one less than current block!");
 
@@ -32,8 +31,19 @@ namespace BlockchainHelloWorld {
             return Id;
         }
 
-        public Block GetPreviousBlock() {
+        public BlockBase GetPreviousBlock() {
             return PreviousBlock;
+        }
+
+
+        /// <summary>
+        /// Override for ToString()
+        /// </summary>
+        /// <returns></returns>
+        public String ToString() {
+
+            return "{id:" + Id + "}";
+
         }
 
     }

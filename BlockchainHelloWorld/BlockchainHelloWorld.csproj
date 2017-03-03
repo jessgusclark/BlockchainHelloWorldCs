@@ -11,7 +11,7 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BlockchainHelloWorld</RootNamespace>
+    <RootNamespace>BlockchainHelloWorld.Block</RootNamespace>
     <AssemblyName>BlockchainHelloWorld</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
@@ -68,7 +68,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Block.cs" />
+    <Compile Include="Block\BlockBase.cs" />
     <Compile Include="Encryption\EncryptionBase.cs" />
     <Compile Include="Encryption\EncryptionBlock.cs" />
     <Compile Include="Encryption\EncryptionObject.cs" />
