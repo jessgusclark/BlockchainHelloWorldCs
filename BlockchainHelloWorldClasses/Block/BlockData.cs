@@ -31,17 +31,17 @@ namespace BlockchainHelloWorldClasses.Block.Block {
         public override string ToString() {
 
             // Genesis Block:
-            String reviousString = "null";
+            String previousString = "null";
 
             // If not Genesis Block:
             if (PreviousBlock != null)
-                reviousString = PreviousBlock.ToString();
+                previousString = PreviousBlock.ToString();
 
             // Add Previous Block (BlockChain!):
             return "{id:" + Id + "," +
                     "nonce:" + Nonce + "," +
                     "data:\"" + Data + "\"," +
-                    "previous:" + reviousString.ToString() +
+                    "previous:" + previousString.ToString() +
                     "}";
 
         }
