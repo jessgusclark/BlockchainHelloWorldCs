@@ -2,7 +2,7 @@
 Playground to create a blockchain data structure. This is very much a trial and error project and commits will reflect that.
 
 
-## Currenct Version: v0.0.1
+## Current Version: v0.0.1
 
 Added data sub method that holds a string, such as "Hello World!"
 
