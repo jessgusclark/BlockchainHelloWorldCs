@@ -22,7 +22,7 @@ namespace BlockchainHelloWorldTest.Encryption {
 
             String result = e.Encrypt(b);
 
-            Assert.AreEqual("62b16eb49fb1605d6af8eb957744efe628896db0", result);
+            Assert.AreEqual("1c25f7a1c8bc785d70a77d6317aae5c678d5f02f", result);
 
         }
 

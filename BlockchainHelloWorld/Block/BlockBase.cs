@@ -7,6 +7,7 @@ namespace BlockchainHelloWorld.Block {
     public class BlockBase {
 
         private int Id;
+        private int Nonce;
         private BlockBase PreviousBlock;
 
         public BlockBase(int i) {
@@ -31,9 +32,23 @@ namespace BlockchainHelloWorld.Block {
             return Id;
         }
 
+        public int GetNonce(){
+            return Nonce;
+        }
+
         public BlockBase GetPreviousBlock() {
             return PreviousBlock;
         }
+
+
+        /// <summary>
+        /// Setter
+        /// </summary>
+        /// <param name="i"></param>
+        public void SetNonce(int i){
+            Nonce = i;
+        }
+
 
 
         /// <summary>
@@ -44,11 +59,12 @@ namespace BlockchainHelloWorld.Block {
 
             // Genesis Block:
             if (PreviousBlock == null)
-                return "{id:" + Id + ",previous:null}";
+                return "{id:" + Id + ",nonce:" + Nonce + ",previous:null}";
             
             // Add Previous Block (BlockChain!):
             return "{id:" + Id + "," +
-                    "previous: " + PreviousBlock.ToString() + 
+                    "nonce:" + Nonce + "," +
+                    "previous:" + PreviousBlock.ToString() + 
                     "}";
 
         }

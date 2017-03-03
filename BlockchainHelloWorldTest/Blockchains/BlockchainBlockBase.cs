@@ -26,7 +26,7 @@ namespace BlockchainHelloWorldTest.Blockchains {
         public void TestBaseBlockBlockChain() {
 
             b2.SetPreviousBlock(b1);
-            Assert.AreEqual("{id:2,previous: {id:1,previous:null}}", b2.ToString());
+            Assert.AreEqual("{id:2,nonce:0,previous:{id:1,nonce:0,previous:null}}", b2.ToString());
 
         }
 
@@ -35,7 +35,7 @@ namespace BlockchainHelloWorldTest.Blockchains {
 
             b2.SetPreviousBlock(b1);
 
-            Assert.AreEqual("116e318c7a12a34ccbde5c0f6f94ed9cbd16dedf", e.Encrypt(b2));
+            Assert.AreEqual("18134bdb6ef6923116f6e85422fa4cd1a2f92d95", e.Encrypt(b2));
 
         }
 
