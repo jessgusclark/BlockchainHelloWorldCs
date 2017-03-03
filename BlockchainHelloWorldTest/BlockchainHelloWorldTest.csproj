@@ -52,7 +52,6 @@
   <ItemGroup>
     <Compile Include="EncryptionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TransactionTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BlockchainHelloWorld\BlockchainHelloWorld.csproj">
