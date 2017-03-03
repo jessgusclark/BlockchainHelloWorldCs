@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BlockchainHelloWorldClasses.Block.Encryption;
 using BlockchainHelloWorldClasses.Block;
+using BlockchainHelloWorldClasses.Block.Block;
 
 namespace BlockchainHelloWorldTest.Encryption {
     [TestClass]
@@ -37,6 +38,19 @@ namespace BlockchainHelloWorldTest.Encryption {
 
         }
 
+        [TestMethod]
+        public void TestEncryptedBlockData() {
+
+            BlockData b1 = new BlockData(1);
+
+            String result = e.Encrypt(b1);
+
+            // hash of BlockBase(1):
+            Assert.AreNotEqual("1c25f7a1c8bc785d70a77d6317aae5c678d5f02f", result);
+
+            // hash of BlockData(1):
+            Assert.AreEqual("9374d0b6714f17d34a2da9e76cdd0bc80b037424", result);
+        }
 
     }
 }
