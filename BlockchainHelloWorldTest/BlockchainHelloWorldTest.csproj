@@ -50,7 +50,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Blockchains\BlockchainBlockBase.cs" />
+    <Compile Include="Blockchains\BlockchainBlockBaseTest.cs" />
+    <Compile Include="Blockchains\BlockchainBlockDataTest.cs" />
     <Compile Include="Block\BlockTest.cs" />
     <Compile Include="Block\BlockDataTest.cs" />
     <Compile Include="Encryption\EncryptionBlockTest.cs" />

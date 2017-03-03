@@ -9,7 +9,7 @@ namespace BlockchainHelloWorldTest.Blockchains {
     /// Nest one block inside another block.
     /// </summary>
     [TestClass]
-    public class BlockchainBlockBase {
+    public class BlockchainBlockBaseTest {
 
         EncryptionBlock e;
         BlockBase b1;
