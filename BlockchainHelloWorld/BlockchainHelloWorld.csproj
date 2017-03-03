@@ -73,6 +73,7 @@
     <Compile Include="Encryption\EncryptionBlock.cs" />
     <Compile Include="Encryption\EncryptionObject.cs" />
     <Compile Include="Encryption\EncryptionString.cs" />
+    <Compile Include="Miner\MinerBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <PropertyGroup>

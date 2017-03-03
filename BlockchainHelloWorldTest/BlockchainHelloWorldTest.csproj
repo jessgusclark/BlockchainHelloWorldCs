@@ -56,6 +56,7 @@
     <Compile Include="Encryption\EncryptionTest.cs" />
     <Compile Include="Encryption\EncryptionStringTest.cs" />
     <Compile Include="Encryption\EncryptionObjectTest.cs" />
+    <Compile Include="Miner\MinerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
