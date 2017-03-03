@@ -34,7 +34,7 @@ Each block then nests inside of itself creating a json like structure similar to
             previous: {
                 id: 0,
                 nonce: 0,
-                data: "",
+                data: "Hello Genesis Block!",
                 previous: null
             }
         }
