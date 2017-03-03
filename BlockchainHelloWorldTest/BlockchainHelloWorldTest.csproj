@@ -60,9 +60,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BlockchainHelloWorld\BlockchainHelloWorld.csproj">
+    <ProjectReference Include="..\BlockchainHelloWorldClasses\BlockchainHelloWorldClasses.csproj">
       <Project>{74436666-32e1-4a56-aca8-e7e0b36da81b}</Project>
-      <Name>BlockchainHelloWorld</Name>
+      <Name>BlockchainHelloWorldClasses</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

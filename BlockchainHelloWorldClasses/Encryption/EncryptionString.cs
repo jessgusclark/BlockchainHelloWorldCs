@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 
-namespace BlockchainHelloWorld.Block.Encryption {
+namespace BlockchainHelloWorldClasses.Block.Encryption {
     public class EncryptionString:EncryptionBase {
 
 

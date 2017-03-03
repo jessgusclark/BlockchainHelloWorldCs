@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Web;
 
-namespace BlockchainHelloWorld.Block.Encryption {
+namespace BlockchainHelloWorldClasses.Block.Encryption {
     public class EncryptionObject:EncryptionBase {
 
         public string Encrypt(object o) {

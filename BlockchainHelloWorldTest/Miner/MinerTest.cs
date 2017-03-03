@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BlockchainHelloWorld.Block.Miner;
-using BlockchainHelloWorld.Block;
-using BlockchainHelloWorld.Block.Encryption;
+using BlockchainHelloWorldClasses.Block.Miner;
+using BlockchainHelloWorldClasses.Block;
+using BlockchainHelloWorldClasses.Block.Encryption;
 
 namespace BlockchainHelloWorldTest.Miner {
     [TestClass]
