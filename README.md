@@ -21,14 +21,22 @@ Each block then nests inside of itself creating a json like structure similar to
 ```
 {
     id: 3,
-    nonce: 0,
+    nonce: 22,
+    data: "Hello World 3!",
     previous: {
         id: 2,
-        nonce: 0,
+        nonce: 20,
+        data: "Hello World 2!",
         previous: {
             id: 1,
-            nonce: 0,
-            previous: null
+            nonce: 17,
+            data: "Hello World 1!",
+            previous: {
+                id: 0,
+                nonce: 0,
+                data: "",
+                previous: null
+            }
         }
     }
 }
