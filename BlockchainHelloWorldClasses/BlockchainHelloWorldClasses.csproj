@@ -75,6 +75,7 @@
     <Compile Include="Encryption\EncryptionObject.cs" />
     <Compile Include="Encryption\EncryptionString.cs" />
     <Compile Include="Miner\MinerBase.cs" />
+    <Compile Include="Miner\MinerData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <PropertyGroup>

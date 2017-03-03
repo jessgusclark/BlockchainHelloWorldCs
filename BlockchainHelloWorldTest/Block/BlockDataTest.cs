@@ -23,7 +23,7 @@ namespace BlockchainHelloWorldTest.Block {
         public void TestAddDataToBlock() {
 
             String str = "Hello World!";
-            b1.AddData(str);
+            b1.SetData(str);
 
             Assert.AreEqual(str, b1.GetData());
 
@@ -34,7 +34,7 @@ namespace BlockchainHelloWorldTest.Block {
         public void TestAddDataToString() {
 
             String str = "Hello World!";
-            b1.AddData(str);
+            b1.SetData(str);
 
             Assert.AreEqual("{id:1,nonce:0,data:\"Hello World!\",previous:null}", b1.ToString());
 

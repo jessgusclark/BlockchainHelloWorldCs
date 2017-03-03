@@ -7,14 +7,22 @@ namespace BlockchainHelloWorldClasses.Block.Block {
     public class BlockData:BlockBase {
 
         private string Data;
+        new protected BlockData PreviousBlock;
 
         public BlockData(int i) : base(i) {}
 
         /// <summary>
         /// Setter
         /// </summary>
-        public void AddData(string d) {
+        public void SetData(string d) {
             Data = d;
+        }
+
+        public void SetPreviousBlock(BlockData b) {
+            if ((b.GetId() + 1) != Id)
+                throw new Exception("Id must be one less than current block!");
+
+            PreviousBlock = b;
         }
 
         /// <summary>
@@ -22,6 +30,10 @@ namespace BlockchainHelloWorldClasses.Block.Block {
         /// </summary>
         public string GetData() {
             return Data;
+        }
+
+        public BlockData GetPreviousBlock() {
+            return PreviousBlock;
         }
 
         /// <summary>

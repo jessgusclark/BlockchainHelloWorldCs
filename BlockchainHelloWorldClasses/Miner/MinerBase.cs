@@ -7,8 +7,7 @@ using System.Web;
 namespace BlockchainHelloWorldClasses.Block.Miner {
     public class MinerBase {
 
-        private BlockBase Blockchain;
-        //private BlockBase Block;
+        protected BlockBase Blockchain;
         private int Difficulty;
 
         /// <summary>
@@ -81,7 +80,7 @@ namespace BlockchainHelloWorldClasses.Block.Miner {
         /// </summary>
         /// <param name="hash"></param>
         /// <returns></returns>
-        private bool CompareHashAgainstDifficulty(String hash) {
+        protected bool CompareHashAgainstDifficulty(String hash) {
 
             string stringDifficulty = "";
             for (int i = 0; i < Difficulty; i++) {

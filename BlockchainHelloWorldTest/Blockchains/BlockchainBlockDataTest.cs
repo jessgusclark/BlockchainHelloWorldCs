@@ -21,8 +21,8 @@ namespace BlockchainHelloWorldTest.Blockchains {
 
         [TestMethod]
         public void TestBaseBlockBlockChain() {
-            b1.AddData("Hello World 1");
-            b2.AddData("Hello World 2");
+            b1.SetData("Hello World 1");
+            b2.SetData("Hello World 2");
 
             b2.SetPreviousBlock(b1);
 
