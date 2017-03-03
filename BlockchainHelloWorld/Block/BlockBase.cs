@@ -48,7 +48,7 @@ namespace BlockchainHelloWorld.Block {
             
             // Add Previous Block (BlockChain!):
             return "{id:" + Id + "," +
-                    "previous: \"" + PreviousBlock.ToString() + "\"" + 
+                    "previous: " + PreviousBlock.ToString() + 
                     "}";
 
         }
