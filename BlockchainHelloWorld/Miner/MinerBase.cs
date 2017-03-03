@@ -7,46 +7,65 @@ using System.Web;
 namespace BlockchainHelloWorld.Block.Miner {
     public class MinerBase {
 
-        private BlockBase Block;
+        private BlockBase Blockchain;
+        //private BlockBase Block;
         private int Difficulty;
 
-
         /// <summary>
-        /// Setters
+        /// Constructor. Create the Genesis block
         /// </summary>
-        public void SetBlock(BlockBase b){
-            Block = b;
-        }
-
-        public void SetDifficulty(int i) {
-            Difficulty = i;
+        public MinerBase() {
+            Blockchain = new BlockBase(0);
         }
 
 
         /// <summary>
         /// Getters
         /// </summary>
-        public BlockBase GetBlock() {
-            return Block;
+        /// <returns></returns>
+        public BlockBase GetBlockchain() {
+            return Blockchain;
+        }
+
+        /// <summary>
+        /// Setters
+        /// </summary>
+        public void SetDifficulty(int i) {
+            Difficulty = i;
         }
 
 
-
-
-        public int Mine(int starting = 0, int ending = 1000000) {
+        /// <summary>
+        /// Mine a block by trying a range of numbers from starting to ending with the miner's difficulty. 
+        /// </summary>
+        /// <param name="starting"></param>
+        /// <param name="ending"></param>
+        /// <returns>Returns nonce that solved the block</returns>
+        public int Mine(BlockBase b, int starting = 0, int ending = 1000000) {
 
             EncryptionBlock e = new EncryptionBlock();
 
             for (int i = starting; i <= 1000000; i++) {
                 
                 //Set the nonce on the block:
-                Block.SetNonce(i);
+                b.SetNonce(i);
 
                 //hash the block:
-                String hash = e.Encrypt(Block);
+                String hash = e.Encrypt(b);
 
-                if (CompareHashAgainstDifficulty(hash))
+                // if hash found:
+                if (CompareHashAgainstDifficulty(hash)) {
+                    //attach the previous blocks to this block:
+                    b.SetPreviousBlock(Blockchain);
+
+                    //set this block as the current blockchain:
+                    Blockchain = b;
+
+                    //return something:
                     return i;
+
+                }
+                    
             }
 
             // no result found:

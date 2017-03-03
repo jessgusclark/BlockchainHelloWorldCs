@@ -4,6 +4,10 @@ using BlockchainHelloWorld.Block;
 using BlockchainHelloWorld.Block.Encryption;
 
 namespace BlockchainHelloWorldTest.Blockchains {
+    /// <summary>
+    /// Blockchain 1: 
+    /// Nest one block inside another block.
+    /// </summary>
     [TestClass]
     public class BlockchainBlockBase {
 
