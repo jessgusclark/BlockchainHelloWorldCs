@@ -6,22 +6,33 @@ using System.Web;
 namespace BlockchainHelloWorld {
     public class Block {
 
-        private int id;
-        private Block previous;
+        private int Id;
+        private Block PreviousBlock;
 
 
         /// <summary>
         /// Setters
         /// </summary>
         public void SetId(int i){
-            id = i;
+            Id = i;
+        }
+
+        public void SetPreviousBlock(Block b) {
+            if ((b.GetId() + 1) != Id)
+                throw new Exception("Id must be one less than current block!");
+
+            PreviousBlock = b;
         }
 
         /// <summary>
         /// Getters
         /// </summary>
         public int GetId() {
-            return id;
+            return Id;
+        }
+
+        public Block GetPreviousBlock() {
+            return PreviousBlock;
         }
 
     }
