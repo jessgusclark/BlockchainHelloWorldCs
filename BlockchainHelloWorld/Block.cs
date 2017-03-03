@@ -8,15 +8,16 @@ namespace BlockchainHelloWorld {
 
         private int Id;
         private Block PreviousBlock;
+        private int p;
+
+        public Block(int i) {
+            Id = i;
+        }
 
 
         /// <summary>
         /// Setters
         /// </summary>
-        public void SetId(int i){
-            Id = i;
-        }
-
         public void SetPreviousBlock(Block b) {
             if ((b.GetId() + 1) != Id)
                 throw new Exception("Id must be one less than current block!");

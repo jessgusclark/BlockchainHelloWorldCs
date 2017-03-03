@@ -18,7 +18,7 @@ namespace BlockchainHelloWorldTest.Encryption {
         [TestMethod]
         public void TestEncryptBlock() {
 
-            Block b = new Block();
+            Block b = new Block(0);
 
             String result = e.Encrypt(b);
 
