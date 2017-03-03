@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BlockchainHelloWorld.Block;
 using BlockchainHelloWorld.Block.Encryption;
 
-namespace BlockchainHelloWorldTest {
+namespace BlockchainHelloWorldTest.Block {
     [TestClass]
     public class BlockTest {
 
@@ -26,7 +26,7 @@ namespace BlockchainHelloWorldTest {
 
             String result = b1.ToString();
 
-            Assert.AreEqual("{id:1}", result);
+            Assert.AreEqual("{id:1,previous:null}", result);
 
         }
 

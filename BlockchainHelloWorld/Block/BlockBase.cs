@@ -40,9 +40,16 @@ namespace BlockchainHelloWorld.Block {
         /// Override for ToString()
         /// </summary>
         /// <returns></returns>
-        public String ToString() {
+        public override String ToString() {
 
-            return "{id:" + Id + "}";
+            // Genesis Block:
+            if (PreviousBlock == null)
+                return "{id:" + Id + ",previous:null}";
+            
+            // Add Previous Block (BlockChain!):
+            return "{id:" + Id + "," +
+                    "previous: \"" + PreviousBlock.ToString() + "\"" + 
+                    "}";
 
         }
 
