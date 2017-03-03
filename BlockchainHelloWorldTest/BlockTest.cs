@@ -26,14 +26,5 @@ namespace BlockchainHelloWorldTest {
 
         }
 
-        [TestMethod]
-        public void TestHashBlock() {
-
-            /*String sha = e.Encrypt(b);
-
-            Assert.AreEqual("", sha);*/
-
-        }
-
     }
 }

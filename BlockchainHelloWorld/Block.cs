@@ -4,16 +4,11 @@ using System.Linq;
 using System.Web;
 
 namespace BlockchainHelloWorld {
-    public class Block:Object {
+    public class Block {
 
         private int id;
+        private Block previous;
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public Block() {
-            id = 0;
-        }
 
         /// <summary>
         /// Setters
