@@ -41,7 +41,7 @@ namespace BlockchainHelloWorld.Block.Miner {
         /// <param name="starting"></param>
         /// <param name="ending"></param>
         /// <returns>Returns nonce that solved the block</returns>
-        public int Mine(BlockBase b, int starting = 0, int ending = 1000000) {
+        public void Mine(BlockBase b, int starting = 0, int ending = 1000000) {
 
             EncryptionBlock e = new EncryptionBlock();
 
@@ -62,7 +62,7 @@ namespace BlockchainHelloWorld.Block.Miner {
                     Blockchain = b;
 
                     //return something:
-                    return i;
+                    return;
 
                 }
                     

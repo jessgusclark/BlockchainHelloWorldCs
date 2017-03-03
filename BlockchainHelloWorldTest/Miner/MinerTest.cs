@@ -22,7 +22,9 @@ namespace BlockchainHelloWorldTest.Miner {
 
             mb.SetDifficulty(1);
 
-            int nonce = mb.Mine(b1);
+            mb.Mine(b1);
+
+            int nonce = mb.GetBlockchain().GetNonce();
 
             // Assert the nonce:
             Assert.AreEqual(19, nonce);
@@ -42,7 +44,7 @@ namespace BlockchainHelloWorldTest.Miner {
 
             mb.SetDifficulty(1);
 
-            int nonce = mb.Mine(b1);
+            mb.Mine(b1);
             Assert.AreEqual(1, mb.GetBlockchain().GetId());
 
             //mine again:
@@ -60,7 +62,10 @@ namespace BlockchainHelloWorldTest.Miner {
         public void TestMinerBaseDifficulty() {
 
             mb.SetDifficulty(2);
-            int nonce = mb.Mine(b1);
+
+            mb.Mine(b1);
+
+            int nonce = mb.GetBlockchain().GetNonce();
 
             Assert.AreEqual(90, nonce);
 
