@@ -26,6 +26,10 @@ namespace BlockchainHelloWorldClasses.Block {
 
             PreviousBlock = b;
             PreviousHash = PreviousBlock.GetHash();
+        
+            //recaculate hash 
+            CalculateHash();
+            
         }
 
         /// <summary>
@@ -50,8 +54,8 @@ namespace BlockchainHelloWorldClasses.Block {
         /// <param name="i"></param>
         public void SetNonce(int i){
             Nonce = i;
+            CalculateHash();
         }
-
 
 
         /// <summary>
@@ -63,11 +67,15 @@ namespace BlockchainHelloWorldClasses.Block {
             // Genesis Block:
             if (PreviousBlock == null)
                 return "{id:" + Id + ",nonce:" + Nonce + ",previous:null}";
-            
+
+            /*if (Hash == null)
+                CalculateHash();*/
+
             // Add Previous Block (BlockChain!):
             return "{id:" + Id + "," +
                     "nonce:" + Nonce + "," +
-                    "hash:" + Hash + "," +
+                    "hash:\"" + Hash + "\"," +
+                    "previousHash:\"" + PreviousHash + "\"," +
                     "previous:" + PreviousBlock.ToString() + 
                     "}";
 
@@ -80,13 +88,17 @@ namespace BlockchainHelloWorldClasses.Block {
         /// <returns>Computed Hash</returns>
         public String GetHash() {
             //prevents overflow?
-            if (Hash != "")
+            if (Hash != null)
                 return Hash;
 
+            CalculateHash();
+            return Hash;
+        }
+
+
+        protected void CalculateHash() {
             EncryptionBlock e = new EncryptionBlock();
             Hash = e.Encrypt(this);
-
-            return Hash;
         }
 
     }
