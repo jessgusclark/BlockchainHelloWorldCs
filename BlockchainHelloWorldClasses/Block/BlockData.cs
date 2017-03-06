@@ -7,7 +7,6 @@ namespace BlockchainHelloWorldClasses.Block.Block {
     public class BlockData:BlockBase {
 
         private string Data;
-        new protected BlockData PreviousBlock;
 
         public BlockData(int i) : base(i) {}
 
@@ -18,13 +17,6 @@ namespace BlockchainHelloWorldClasses.Block.Block {
             Data = d;
         }
 
-        public void SetPreviousBlock(BlockData b) {
-            if ((b.GetId() + 1) != Id)
-                throw new Exception("Id must be one less than current block!");
-
-            PreviousBlock = b;
-        }
-
         /// <summary>
         /// Getter
         /// </summary>
@@ -32,31 +24,14 @@ namespace BlockchainHelloWorldClasses.Block.Block {
             return Data;
         }
 
-        public BlockData GetPreviousBlock() {
-            return PreviousBlock;
-        }
-
         /// <summary>
-        /// ToString() includes data field
+        /// Override GetFormattedData();
         /// </summary>
-        /// <returns>Single Block or Blockchain if it is not Genesis block.</returns>
-        public override string ToString() {
-
-            // Genesis Block:
-            String previousString = "null";
-
-            // If not Genesis Block:
-            if (PreviousBlock != null)
-                previousString = PreviousBlock.ToString();
-
-            // Add Previous Block (BlockChain!):
-            return "{id:" + Id + "," +
-                    "nonce:" + Nonce + "," +
-                    "data:\"" + Data + "\"," +
-                    "previous:" + previousString.ToString() +
-                    "}";
-
+        /// <returns>Data field</returns>
+        protected override String GetFormattedData() {
+            return "\"" + GetData() + "\"";
         }
+
 
     }
 }

@@ -85,7 +85,7 @@ namespace BlockchainHelloWorldClasses.Block {
                     "hash:\"" + Hash + "\"," +
                     "previousHash:\"" + PreviousHash + "\"," + 
                     "mined:\"" + BlockMined + "\"," +
-                    "data:" + GetData() +
+                    "data:" + GetFormattedData() +
                     "}";
 
             if (chain)
@@ -113,7 +113,7 @@ namespace BlockchainHelloWorldClasses.Block {
                     "nonce:" + Nonce + "," +
                     "previousHash:\"" + PreviousHash + "\"," +
                     "mined:\"" + BlockMined + "\"," +
-                    "data:" + GetData() +
+                    "data:" + GetFormattedData() +
                     "}";
             return block;
 
@@ -143,7 +143,7 @@ namespace BlockchainHelloWorldClasses.Block {
         /// Will be overwrited by inherited classes
         /// </summary>
         /// <returns>null</returns>
-        private String GetData(){
+        protected virtual String GetFormattedData() {
             return "\"\"";
         }
 

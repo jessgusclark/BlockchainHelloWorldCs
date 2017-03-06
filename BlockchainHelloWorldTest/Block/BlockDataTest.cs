@@ -36,7 +36,7 @@ namespace BlockchainHelloWorldTest.Block {
             String str = "Hello World!";
             b1.SetData(str);
 
-            Assert.AreEqual("{id:1,nonce:0,data:\"Hello World!\",previous:null}", b1.ToString());
+            Assert.AreEqual("{id:1,nonce:0,hash:\"ea9bac830f9dab6a4bd9b53b23c097cb3eb217d1\",previousHash:\"\",mined:\"1/1/0001 12:00:00 AM\",data:\"Hello World!\"}", b1.BlockToString());
 
 
         }
