@@ -9,12 +9,13 @@ namespace BlockchainHelloWorldClasses.Block {
 
         protected int Id;
         protected int Nonce;
+        protected String Hash;
+        protected String PreviousHash;
         protected BlockBase PreviousBlock;
 
         public BlockBase(int i) {
             Id = i;
         }
-
 
         /// <summary>
         /// Setters
@@ -24,6 +25,7 @@ namespace BlockchainHelloWorldClasses.Block {
                 throw new Exception("Id must be one less than current block!");
 
             PreviousBlock = b;
+            PreviousHash = PreviousBlock.GetHash();
         }
 
         /// <summary>
@@ -65,16 +67,26 @@ namespace BlockchainHelloWorldClasses.Block {
             // Add Previous Block (BlockChain!):
             return "{id:" + Id + "," +
                     "nonce:" + Nonce + "," +
+                    "hash:" + Hash + "," +
                     "previous:" + PreviousBlock.ToString() + 
                     "}";
 
         }
 
+        /// <summary>
+        /// Return the hashed value or compute hash if not set.
+        /// Hash is saved to prevent StackOverflow when converting the object ToString()
+        /// </summary>
+        /// <returns>Computed Hash</returns>
         public String GetHash() {
+            //prevents overflow?
+            if (Hash != "")
+                return Hash;
 
             EncryptionBlock e = new EncryptionBlock();
-            return e.Encrypt(this);
+            Hash = e.Encrypt(this);
 
+            return Hash;
         }
 
     }
