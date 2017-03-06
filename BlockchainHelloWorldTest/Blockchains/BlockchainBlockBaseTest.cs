@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BlockchainHelloWorldClasses.Block;
 using BlockchainHelloWorldClasses.Block.Encryption;
+using BlockchainHelloWorldClasses.Block.Miner;
 
 namespace BlockchainHelloWorldTest.Blockchains {
     /// <summary>
@@ -11,23 +12,22 @@ namespace BlockchainHelloWorldTest.Blockchains {
     [TestClass]
     public class BlockchainBlockBaseTest {
 
-        EncryptionBlock e;
         BlockBase b1;
         BlockBase b2;
 
         String b1Hash;
         String b2Hash;
 
+        MinerBase mb;
+
         [TestInitialize()]
         public void Initialize() {
-            e = new EncryptionBlock();
             b1 = new BlockBase(1);
             b2 = new BlockBase(2);
 
-            b2.SetPreviousBlock(b1);
+            mb = new MinerBase();
+            mb.SetDifficulty(1);
 
-            b2Hash = "2ba28a1a777f623f9f76da46170b1b900e222bc2";
-            b1Hash = "f6aefbd1d0e4fe63ce121c227ef6d80344763428";
         }
 
 
@@ -35,61 +35,38 @@ namespace BlockchainHelloWorldTest.Blockchains {
         /// Blockchain of BlockBase
         /// </summary>
 
-        [TestMethod]
-        public void TestBaseBlockBlockChainHash() {
-
-            Assert.AreEqual(b2Hash, e.Encrypt(b2));
-
-            Assert.AreEqual(b2Hash, b2.GetHash());
-        }
-
 
         [TestMethod]
         public void TestBaseBlockBlockChain() {
 
-            String expected = "{id:2,nonce:0,hash:\"" + b2Hash + "\",previousHash:\"" + b1Hash + "\",mined:\"1/1/0001 12:00:00 AM\",data:\"\"}";
+            mb.Mine(b1);
+            mb.Mine(b2);
 
-            Assert.AreEqual(expected, b2.BlockToString());
+            Assert.AreEqual(b2.GetPreviousHash(), b1.GetHash());
+            Assert.AreEqual(b1, b2.GetPreviousBlock());
+
+            Assert.IsTrue(b1.IsSigned() && b2.IsSigned());
+
+            Assert.AreNotEqual(0, b1.GetNonce());
+            Assert.AreNotEqual(0, b2.GetNonce());
 
         }
 
+        /// <summary>
+        /// This test is for the structure not for the elements within the structure
+        /// </summary>
         [TestMethod]
-        public void TestBaseBlockToString() {
+        public void TestBaseBlockToStringStructure() {
+
+            mb.Mine(b1);
+            mb.Mine(b2);
 
             string singleBlock = b2.BlockToString(false);
 
-            string expected = "{id:2,nonce:0,hash:\"" + b2Hash + "\",previousHash:\"" + b1Hash + "\",mined:\"1/1/0001 12:00:00 AM\",data:\"\"}";
+            string expected = "{id:2,nonce:" + mb.GetNonce() + ",hash:\"" + b2.GetHash() + "\",previousHash:\"" + b1.GetHash() + "\",mined:\"" + DateTime.Now + "\",data:\"\"}";
 
             Assert.AreEqual(expected, singleBlock);
 
-        }
-
-
-        /// <summary>
-        /// {
-	    ///    id: 2,
-	    ///        nonce: 0,
-	    ///        hash: "",
-	    ///        previousHash: "",
-        ///        mined: "",
-	    ///        data: ""
-        ///    }, {
-	    ///        id: 1,
-	    ///        nonce: 0,
-	    ///        hash: "",
-        ///        mined: "",
-	    ///        previousHash: "",
-	    ///        data: ""
-        ///    }
-        /// </summary>
-        [TestMethod]
-        public void TestBaseBlockchainToString() {
-
-            string singleBlock = b2.BlockToString(true);
-
-            string expected = "{id:2,nonce:0,hash:\"" + b2Hash + "\",previousHash:\"" + b1Hash + "\",mined:\"1/1/0001 12:00:00 AM\",data:\"\"},{id:1,nonce:0,hash:\"" + b1Hash + "\",previousHash:\"\",mined:\"1/1/0001 12:00:00 AM\",data:\"\"}";
-
-            Assert.AreEqual(expected, singleBlock);
         }
 
     }

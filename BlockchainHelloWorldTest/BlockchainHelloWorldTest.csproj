@@ -54,10 +54,8 @@
     <Compile Include="Blockchains\BlockchainBlockDataTest.cs" />
     <Compile Include="Block\BlockTest.cs" />
     <Compile Include="Block\BlockDataTest.cs" />
-    <Compile Include="Encryption\EncryptionBlockTest.cs" />
     <Compile Include="Encryption\EncryptionTest.cs" />
     <Compile Include="Encryption\EncryptionStringTest.cs" />
-    <Compile Include="Encryption\EncryptionObjectTest.cs" />
     <Compile Include="Miner\MinerTest.cs" />
     <Compile Include="Miner\MinerDataTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -9,6 +9,7 @@ namespace BlockchainHelloWorldClasses.Block.Miner {
 
         protected BlockBase Blockchain;
         private int Difficulty;
+        private int Nonce;
 
         /// <summary>
         /// Constructor. Create the Genesis block
@@ -24,6 +25,10 @@ namespace BlockchainHelloWorldClasses.Block.Miner {
         /// <returns></returns>
         public BlockBase GetBlockchain() {
             return Blockchain;
+        }
+
+        public int GetNonce() {
+            return Nonce;
         }
 
         /// <summary>
@@ -45,20 +50,24 @@ namespace BlockchainHelloWorldClasses.Block.Miner {
             if (Difficulty == 0)
                 throw new Exception("Difficulty level has not been set.");
 
-            EncryptionBlock e = new EncryptionBlock();
+            if ((b.GetId() - 1) != Blockchain.GetId())
+                throw new Exception("Block number must be incremental.");
 
-            for (int i = starting; i <= 1000000; i++) {
+            /*if (b.IsSigned())
+                throw new Exception("Block is already signed and cannot be reminded.");*/
+
+            //EncryptionBlock e = new EncryptionBlock();
+
+            for (int i = starting; i <= ending; i++) {
                 
-                //Set the nonce on the block:
-                b.SetNonce(i);
+                //Set the nonce on the miner:
+                Nonce = i;
 
                 // if hash found:
-                if (CompareHashAgainstDifficulty( b.GetHash() )) {
-                    //attach the previous blocks to this block:
-                    b.SetPreviousBlock(Blockchain);
+                if (CompareHashAgainstDifficulty( b.AcceptMiner(this) )) {
 
-                    //set mined date/time:
-                    b.SetBlockMined(DateTime.Now);
+                    //sign transaction with miner:
+                    b.Sign(this);
 
                     //set this block as the current blockchain:
                     Blockchain = b;
@@ -71,7 +80,6 @@ namespace BlockchainHelloWorldClasses.Block.Miner {
             }
 
             // no result found:
-            b.SetNonce(0);
             throw new Exception("No result found between [" + starting + "]-[" + ending + "] with a difficulty of [" + Difficulty + "]");
 
         }

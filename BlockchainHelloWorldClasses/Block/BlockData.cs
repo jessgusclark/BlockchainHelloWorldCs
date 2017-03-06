@@ -14,6 +14,9 @@ namespace BlockchainHelloWorldClasses.Block.Block {
         /// Setter
         /// </summary>
         public void SetData(string d) {
+            if (IsSigned())
+                throw new Exception("Block is signed and cannot be changed");
+
             Data = d;
         }
 

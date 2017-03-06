@@ -32,12 +32,29 @@ namespace BlockchainHelloWorldTest.Miner {
             // Is the nonce set on the block?
             Assert.AreEqual(b1.GetNonce(), nonce);
 
-            // Check the hash's starting 0:
-            EncryptionBlock e = new EncryptionBlock();
-            String hash = e.Encrypt(b1);
-            //Assert.AreEqual("06c24c8fe5e39f038a3570e562fc279e37af97d3", hash);
+            // Is signed?
+            Assert.IsTrue(b1.IsSigned());
 
         }
+
+
+        [TestMethod]
+        public void TestMinerMineBlock() {
+
+            mb.SetDifficulty(1);
+
+            mb.Mine(b1);
+
+            Assert.IsTrue(b1.IsSigned());
+            Assert.IsNotNull(b1.GetHash());
+
+            BlockBase b2 = new BlockBase(2);
+            mb.Mine(b2);
+            Assert.IsTrue(b2.IsSigned());
+            Assert.AreEqual(b1.GetHash(), b2.GetPreviousHash());
+
+        }
+
 
         [TestMethod]
         public void TestMinerBlockBaseMineAddBlock() {
@@ -70,8 +87,8 @@ namespace BlockchainHelloWorldTest.Miner {
             Assert.AreEqual(690, nonce);
 
             // Let's see the Hash:
-            EncryptionBlock e = new EncryptionBlock();
-            String hash = e.Encrypt(b1);
+            //EncryptionBlock e = new EncryptionBlock();
+            //String hash = e.Encrypt(b1);
             //Assert.AreEqual("0086f15ccc3f3164004aeff5792c3e054d746d5a", hash);
 
         }

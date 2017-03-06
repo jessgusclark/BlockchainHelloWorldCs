@@ -22,34 +22,6 @@ namespace BlockchainHelloWorldClasses.Block.Miner {
             return Blockchain;
         }
 
-        public void Mine(BlockData b, int starting = 0, int ending = 1000000) {
-            EncryptionBlock e = new EncryptionBlock();
-
-            for (int i = starting; i <= 1000000; i++) {
-
-                //Set the nonce on the block:
-                b.SetNonce(i);
-
-                //hash the block:
-                String hash = e.Encrypt(b);
-
-                // if hash found:
-                if (CompareHashAgainstDifficulty(hash)) {
-                    //attach the previous blocks to this block:
-                    b.SetPreviousBlock(Blockchain);
-
-                    //set this block as the current blockchain:
-                    Blockchain = b;
-
-                    //return something:
-                    return;
-
-                }
-
-            }
-
-            // no result found:
-            throw new Exception("No result found between [" + starting + "]-[" + ending + "] with a difficulty of [ unknown ]");
-        }
+        
     }
 }

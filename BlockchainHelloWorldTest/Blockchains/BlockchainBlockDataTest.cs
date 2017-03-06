@@ -2,13 +2,13 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BlockchainHelloWorldClasses.Block.Encryption;
 using BlockchainHelloWorldClasses.Block.Block;
+using BlockchainHelloWorldClasses.Block.Miner;
 
 namespace BlockchainHelloWorldTest.Blockchains {
     [TestClass]
     public class BlockchainBlockDataTest {
 
 
-        EncryptionBlock e;
         BlockData b1;
         BlockData b2;
 
@@ -17,14 +17,13 @@ namespace BlockchainHelloWorldTest.Blockchains {
 
         [TestInitialize()]
         public void Initialize() {
-            e = new EncryptionBlock();
             b1 = new BlockData(1);
             b2 = new BlockData(2);
 
             b1.SetData("Hello World 1");
             b2.SetData("Hello World 2");
 
-            b2.SetPreviousBlock(b1);
+            //b2.SetPreviousBlock(b1);
 
             hash1 = b1.GetHash();
             hash2 = b2.GetHash();
@@ -41,5 +40,28 @@ namespace BlockchainHelloWorldTest.Blockchains {
         }
 
 
+        [TestMethod]
+        public void TestBreakingBlockchain() {
+
+            MinerBase miner = new MinerBase();
+            miner.SetDifficulty(1);
+
+            //set up block 1:
+            b1.SetData("Hello World 1");
+            miner.Mine(b1);
+            Assert.IsTrue(b1.IsSigned());
+
+            //set up block 2:
+            b2.SetData("Hello World 2");
+            miner.Mine(b2);
+            Assert.IsTrue(b2.IsSigned());
+
+            //change block 1:
+            b1.SetData("Changed Data");
+
+            Assert.IsFalse(b2.IsSigned());
+            Assert.IsFalse(b1.IsSigned());
+
+        }
     }
 }

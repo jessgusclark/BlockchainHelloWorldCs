@@ -1,4 +1,5 @@
 ﻿using BlockchainHelloWorldClasses.Block.Encryption;
+using BlockchainHelloWorldClasses.Block.Miner;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,21 +9,23 @@ namespace BlockchainHelloWorldClasses.Block {
     public class BlockBase {
 
         protected int Id;
-        protected int Nonce;
+        private int Nonce;
+        private Boolean Signed;
         protected String Hash;
         protected String PreviousHash;
-        protected DateTime BlockMined;
+        protected DateTime DateMined;
 
         protected BlockBase PreviousBlock;
 
         public BlockBase(int i) {
             Id = i;
+            Signed = false;
         }
 
         /// <summary>
-        /// Setters
+        /// DEPRECATED!
         /// </summary>
-        public void SetPreviousBlock(BlockBase b) {
+        /*public void SetPreviousBlock(BlockBase b) {
             if ((b.GetId() + 1) != Id)
                 throw new Exception("Id must be one less than current block!");
 
@@ -32,7 +35,7 @@ namespace BlockchainHelloWorldClasses.Block {
             //recaculate hash 
             GetHash();
             
-        }
+        }*/
 
         /// <summary>
         /// Getters
@@ -50,41 +53,60 @@ namespace BlockchainHelloWorldClasses.Block {
         }
 
         public DateTime GetMinedDate() {
-            return BlockMined;
+            return DateMined;
         }
 
         public bool IsSigned() {
-            if (Nonce == 0)
-                return false;
-
-            return true;
+            return Signed;
         }
+
+        public String GetHash() {
+            return Hash;
+        }
+
+        public String GetPreviousHash() {
+            return PreviousHash;
+        }
+
+        /// <summary>
+        /// Used to test a nonce but does not set it. To set the nonce, use
+        /// Sign(Miner);
+        /// </summary>
+        /// <param name="i"></param>
+        /// <returns>Returns Hash</returns>
+        public String TryNonce(int i) {
+            return CalculateHash(i);
+        }
+
 
 
         /// <summary>
-        /// Setter
+        /// Sign Block
         /// </summary>
-        /// <param name="i"></param>
-        public void SetNonce(int i){
-            Nonce = i;
-            GetHash();
-        }
-
-        public void SetBlockMined(DateTime d) {
-            BlockMined = d;
-            GetHash();
+        /// <param name="miner"></param>
+        public void Sign(MinerBase miner) {
+            DateMined = DateTime.Now;
+            Nonce = miner.GetNonce();
+            PreviousHash = miner.GetBlockchain().GetHash();
+            PreviousBlock = miner.GetBlockchain();
+            
+            //only place these should be set:
+            Hash = CalculateHash(miner.GetNonce());
+            Signed = true;
         }
 
 
         public String BlockToString(Boolean chain = false) {
 
-            GetHash();
+            if (!Signed)
+                throw new Exception("Block is not signed, BlockToString() cannot be executed");
 
+            //build block:
             String block = "{id:" + Id + "," +
                     "nonce:" + Nonce + "," +
                     "hash:\"" + Hash + "\"," +
                     "previousHash:\"" + PreviousHash + "\"," + 
-                    "mined:\"" + BlockMined + "\"," +
+                    "mined:\"" + DateMined + "\"," +
                     "data:" + GetFormattedData() +
                     "}";
 
@@ -103,41 +125,38 @@ namespace BlockchainHelloWorldClasses.Block {
         /// </summary>
         /// <returns></returns>
         public override String ToString() {
+            return "Block " + Id;
+        }
 
-            //Previous Hash:
-            if (PreviousBlock != null)
-                PreviousBlock.GetHash();
 
-            // Add Previous Block (BlockChain!):
+        /// <summary>
+        /// Calculate the hash of the object given a nonce of i. Then compare against the miner's
+        /// difficulty level to see if it can be signed with the nonce.
+        /// </summary>
+        /// <param name="i"></param>
+        /// <returns></returns>
+        private String CalculateHash(int i) {
+
             String block = "{id:" + Id + "," +
-                    "nonce:" + Nonce + "," +
+                    "nonce:" + i + "," +
                     "previousHash:\"" + PreviousHash + "\"," +
-                    "mined:\"" + BlockMined + "\"," +
+                    "mined:\"" + DateMined + "\"," +
                     "data:" + GetFormattedData() +
                     "}";
-            return block;
 
+            EncryptionString e = new EncryptionString();
+            return e.Encrypt(block);
         }
 
         /// <summary>
-        /// Return the hashed value or compute hash if not set.
-        /// Hash is saved to prevent StackOverflow when converting the object ToString()
+        /// 
         /// </summary>
-        /// <returns>Computed Hash</returns>
-        public String GetHash() {
-            //prevents overflow?
-            //if (Hash != null)
-            //    return Hash;
-
-            //calculate previous block if not null (loop):
-            if (PreviousBlock != null)
-                PreviousBlock.GetHash();
-
-            EncryptionBlock e = new EncryptionBlock();
-            Hash = e.Encrypt(this);
-
-            return Hash;
+        /// <param name="miner">Hash with the given Nonce</param>
+        /// <returns></returns>
+        public String AcceptMiner(MinerBase miner) {
+            return CalculateHash(miner.GetNonce());
         }
+
 
         /// <summary>
         /// Will be overwrited by inherited classes
