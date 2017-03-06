@@ -26,7 +26,7 @@ namespace BlockchainHelloWorldTest.Block {
 
             String result = b1.ToString();
 
-            Assert.AreEqual("{id:1,nonce:0,previous:null}", result);
+            Assert.AreEqual("{id:1,nonce:0,previousHash:\"\",mined:\"1/1/0001 12:00:00 AM\",data:\"\"}", result);
 
         }
 

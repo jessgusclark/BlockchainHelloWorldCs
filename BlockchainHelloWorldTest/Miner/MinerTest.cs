@@ -27,7 +27,7 @@ namespace BlockchainHelloWorldTest.Miner {
             int nonce = mb.GetBlockchain().GetNonce();
 
             // Assert the nonce:
-            Assert.AreEqual(19, nonce);
+            Assert.AreEqual(2, nonce);
 
             // Is the nonce set on the block?
             Assert.AreEqual(b1.GetNonce(), nonce);
@@ -67,7 +67,7 @@ namespace BlockchainHelloWorldTest.Miner {
 
             int nonce = mb.GetBlockchain().GetNonce();
 
-            Assert.AreEqual(90, nonce);
+            Assert.AreEqual(690, nonce);
 
             // Let's see the Hash:
             EncryptionBlock e = new EncryptionBlock();
@@ -77,11 +77,14 @@ namespace BlockchainHelloWorldTest.Miner {
         }
 
         [TestMethod]
-        public void TestMinerAddBlock() {
-
+        public void TestMinerMineDate() {
             mb.SetDifficulty(2);
-            //int nonce 
 
+            Assert.IsFalse(b1.IsSigned());
+
+            mb.Mine(b1);
+            Assert.AreNotEqual("1/1/0001 12:00:00 AM", b1.GetMinedDate().ToString());
+            Assert.IsTrue(b1.IsSigned());
         }
 
     }

@@ -42,6 +42,9 @@ namespace BlockchainHelloWorldClasses.Block.Miner {
         /// <returns>Returns nonce that solved the block</returns>
         public void Mine(BlockBase b, int starting = 0, int ending = 1000000) {
 
+            if (Difficulty == 0)
+                throw new Exception("Difficulty level has not been set.");
+
             EncryptionBlock e = new EncryptionBlock();
 
             for (int i = starting; i <= 1000000; i++) {
@@ -49,13 +52,13 @@ namespace BlockchainHelloWorldClasses.Block.Miner {
                 //Set the nonce on the block:
                 b.SetNonce(i);
 
-                //hash the block:
-                String hash = e.Encrypt(b);
-
                 // if hash found:
-                if (CompareHashAgainstDifficulty(hash)) {
+                if (CompareHashAgainstDifficulty( b.GetHash() )) {
                     //attach the previous blocks to this block:
                     b.SetPreviousBlock(Blockchain);
+
+                    //set mined date/time:
+                    b.SetBlockMined(DateTime.Now);
 
                     //set this block as the current blockchain:
                     Blockchain = b;
@@ -68,6 +71,7 @@ namespace BlockchainHelloWorldClasses.Block.Miner {
             }
 
             // no result found:
+            b.SetNonce(0);
             throw new Exception("No result found between [" + starting + "]-[" + ending + "] with a difficulty of [" + Difficulty + "]");
 
         }
