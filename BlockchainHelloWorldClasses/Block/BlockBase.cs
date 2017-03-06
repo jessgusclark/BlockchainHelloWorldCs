@@ -49,6 +49,17 @@ namespace BlockchainHelloWorldClasses.Block {
             return PreviousBlock;
         }
 
+        public DateTime GetMinedDate() {
+            return BlockMined;
+        }
+
+        public bool IsSigned() {
+            if (Nonce == 0)
+                return false;
+
+            return true;
+        }
+
 
         /// <summary>
         /// Setter

@@ -77,11 +77,14 @@ namespace BlockchainHelloWorldTest.Miner {
         }
 
         [TestMethod]
-        public void TestMinerAddBlock() {
-
+        public void TestMinerMineDate() {
             mb.SetDifficulty(2);
-            //int nonce 
 
+            Assert.IsFalse(b1.IsSigned());
+
+            mb.Mine(b1);
+            Assert.AreNotEqual("1/1/0001 12:00:00 AM", b1.GetMinedDate().ToString());
+            Assert.IsTrue(b1.IsSigned());
         }
 
     }
