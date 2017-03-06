@@ -43,5 +43,14 @@ namespace BlockchainHelloWorldTest.Blockchains {
 
         }
 
+        [TestMethod]
+        public void TestBaseBlockBlockChainGetHash() {
+
+            Assert.AreEqual("ff51971c741efcaed793fd5b8b0de859f021b97f", b2.GetHash());
+
+            Assert.AreEqual(b2.GetHash(), e.Encrypt(b2));
+
+        }
+
     }
 }

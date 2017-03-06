@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlockchainHelloWorldClasses.Block.Encryption;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -66,6 +67,13 @@ namespace BlockchainHelloWorldClasses.Block {
                     "nonce:" + Nonce + "," +
                     "previous:" + PreviousBlock.ToString() + 
                     "}";
+
+        }
+
+        public String GetHash() {
+
+            EncryptionBlock e = new EncryptionBlock();
+            return e.Encrypt(this);
 
         }
 
